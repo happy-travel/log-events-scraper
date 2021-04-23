@@ -48,12 +48,12 @@ namespace HappyTravel.Funai.Services
         }
 
 
-        public async Task CreateFileOrUpdate(string content)
+        public async Task<string> CreateFileOrUpdate(string content, string user, string repository, string path)
         {
             var sha = string.Empty;
             try
             {
-                var files = await _client.Repository.Content.GetAllContents(_settings.UploadToOwner, _settings.UploadToRepository, _settings.UploadToFile);
+                var files = await _client.Repository.Content.GetAllContents(user, repository, path );
                 sha = files[0].Sha;
             }
             catch (NotFoundException)
@@ -64,13 +64,15 @@ namespace HappyTravel.Funai.Services
             if (sha == string.Empty)
             {
                 var request = new CreateFileRequest("Create file", content);
-                await _client.Repository.Content.CreateFile(_settings.UploadToOwner, _settings.UploadToRepository, _settings.UploadToFile, request);
+                await _client.Repository.Content.CreateFile(user, repository, path, request);
             }
             else
             {
                 var request = new UpdateFileRequest("Update file", content, sha);
-                await _client.Repository.Content.UpdateFile(_settings.UploadToOwner, _settings.UploadToRepository, _settings.UploadToFile, request);
+                await _client.Repository.Content.UpdateFile(user, repository, path, request);
             }
+            
+            return $"https://github.com/{user}/{repository}/blob/main/{path}";
         }
 
         private readonly FunaiSettings _settings;

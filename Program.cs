@@ -1,18 +1,37 @@
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using HappyTravel.Funai.Configurations;
+using HappyTravel.Funai.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace HappyTravel.Funai
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
+                .Build();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+            var serviceProvider = new ServiceCollection()
+                .AddTransient<IGitHubService, GitHubService>()
+                .AddTransient<ILogEventsService, LogEventsService>()
+                .Configure<FunaiSettings>(configuration.GetSection("FunaiSettings"))
+                .BuildServiceProvider();
+
+            Console.WriteLine("Starting update");
+            var logEventsService = serviceProvider.GetService<ILogEventsService>();
+            var fileUrl = await logEventsService.RefreshEventIds();
+            Console.WriteLine("The file has been updated");
+            Console.WriteLine(fileUrl);
+        }
     }
 }

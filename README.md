@@ -6,3 +6,4 @@ If the document already exists, it will be updated by the new one.
 
 Requirements:
 
+The github token. It can be specified in appsettings.json or in environment variables as **FunaiSettings__GitHubToken**

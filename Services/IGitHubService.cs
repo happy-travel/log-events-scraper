@@ -9,6 +9,6 @@ namespace HappyTravel.Funai.Services
     {
         Task<IEnumerable<SearchItem>> SearchFile(string filename);
         Task<string> DownloadFile(string repository, string path);
-        Task CreateFileOrUpdate(string content);
+        Task<string> CreateFileOrUpdate(string content, string user, string repository, string path);
     } 
 }
