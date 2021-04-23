@@ -9,7 +9,7 @@ namespace HappyTravel.Funai.Services
 {
     public class LogEventsService : ILogEventsService
     {
-        public LogEventsService(IGitHubService gitHubService, IOptions<FunaiSettings> settings)
+        public LogEventsService(IGitHubService gitHubService, IOptions<Settings> settings)
         {
             _gitHubService = gitHubService;
             _settings = settings.Value;
@@ -18,6 +18,8 @@ namespace HappyTravel.Funai.Services
 
         private async Task<string> GenerateMarkdown(string searchFile)
         {
+            // disallow search of short named files
+            // if the term will be an empty string, github api will return every file
             if (searchFile.Length < 5)
                 throw new ArgumentException("Search file name cannot be shorter than 5 letters");
             
@@ -57,6 +59,6 @@ namespace HappyTravel.Funai.Services
         }
 
         private readonly IGitHubService _gitHubService;
-        private readonly FunaiSettings _settings;
+        private readonly Settings _settings;
     }
 }

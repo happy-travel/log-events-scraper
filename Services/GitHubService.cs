@@ -10,7 +10,7 @@ namespace HappyTravel.Funai.Services
 {
     public class GitHubService : IGitHubService
     {
-        public GitHubService(IOptions<FunaiSettings> settings)
+        public GitHubService(IOptions<Settings> settings)
         {
             _settings = settings.Value;
             _client = new GitHubClient(new ProductHeaderValue(_settings.GitHubAgentName))
@@ -75,7 +75,7 @@ namespace HappyTravel.Funai.Services
             return $"https://github.com/{user}/{repository}/blob/main/{path}";
         }
 
-        private readonly FunaiSettings _settings;
+        private readonly Settings _settings;
         private readonly GitHubClient _client;
     }
 }

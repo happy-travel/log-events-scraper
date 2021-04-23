@@ -18,13 +18,12 @@ namespace HappyTravel.Funai
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables()
                 .Build();
 
             var serviceProvider = new ServiceCollection()
                 .AddTransient<IGitHubService, GitHubService>()
                 .AddTransient<ILogEventsService, LogEventsService>()
-                .Configure<FunaiSettings>(configuration.GetSection("FunaiSettings"))
+                .Configure<Settings>(configuration.GetSection("FunaiSettings"))
                 .BuildServiceProvider();
 
             Console.WriteLine("Starting update");

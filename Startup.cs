@@ -21,7 +21,7 @@ namespace HappyTravel.Funai
                 .AddEnvironmentVariables()
                 .Build();
 
-            services.Configure<FunaiSettings>(configuration.GetSection("FunaiSettings"));
+            services.Configure<Settings>(configuration.GetSection("FunaiSettings"));
             services.AddControllers();
             services.AddTransient<IGitHubService, GitHubService>();
             services.AddTransient<ILogEventsService, LogEventsService>();

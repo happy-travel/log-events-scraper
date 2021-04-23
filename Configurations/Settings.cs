@@ -1,6 +1,6 @@
 namespace HappyTravel.Funai.Configurations
 {
-    public class FunaiSettings
+    public class Settings
     {
         public string SearchFile { get; set; }
         public string GitHubOrganization { get; set; }
