@@ -1,4 +1,4 @@
-# Log Events Gatherer
+# Log Events Scraper
 
 The service makes search request to the GitHub API to find every LogEvents.json file. It also searches inside private repositories.
 Then it downloads each file, converts them to a single markdown document and upload the document to the specified repository.
