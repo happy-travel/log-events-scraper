@@ -1,4 +1,4 @@
-namespace HappyTravel.Funai.Classes
+namespace HappyTravel.LogEventsScraper.Classes
 {
     public class SearchItem
     {

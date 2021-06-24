@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace HappyTravel.Funai.Services
+namespace HappyTravel.LogEventsScraper.Services
 {
     public interface ILogEventsService
     {

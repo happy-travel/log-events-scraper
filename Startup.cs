@@ -1,13 +1,13 @@
 using System.IO;
-using HappyTravel.Funai.Configurations;
-using HappyTravel.Funai.Services;
+using HappyTravel.LogEventsScraper.Configurations;
+using HappyTravel.LogEventsScraper.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace HappyTravel.Funai
+namespace HappyTravel.LogEventsScraper
 {
     public class Startup
     {

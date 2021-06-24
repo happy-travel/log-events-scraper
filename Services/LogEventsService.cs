@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using HappyTravel.Funai.Configurations;
+using HappyTravel.LogEventsScraper.Configurations;
 using Microsoft.Extensions.Options;
 
-namespace HappyTravel.Funai.Services
+namespace HappyTravel.LogEventsScraper.Services
 {
     public class LogEventsService : ILogEventsService
     {
