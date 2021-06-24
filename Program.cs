@@ -1,15 +1,15 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using HappyTravel.Funai.Configurations;
-using HappyTravel.Funai.Services;
+using HappyTravel.LogEventsScraper.Configurations;
+using HappyTravel.LogEventsScraper.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace HappyTravel.Funai
+namespace HappyTravel.LogEventsScraper
 {
     public class Program
     {
@@ -23,7 +23,7 @@ namespace HappyTravel.Funai
             var serviceProvider = new ServiceCollection()
                 .AddTransient<IGitHubService, GitHubService>()
                 .AddTransient<ILogEventsService, LogEventsService>()
-                .Configure<Settings>(configuration.GetSection("FunaiSettings"))
+                .Configure<Settings>(configuration.GetSection("AppSettings"))
                 .BuildServiceProvider();
 
             Console.WriteLine("Starting update");

@@ -1,21 +1,23 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HappyTravel.Funai.Classes;
-using HappyTravel.Funai.Configurations;
+using HappyTravel.LogEventsScraper.Classes;
+using HappyTravel.LogEventsScraper.Configurations;
 using Microsoft.Extensions.Options;
 using Octokit;
 
-namespace HappyTravel.Funai.Services
+namespace HappyTravel.LogEventsScraper.Services
 {
     public class GitHubService : IGitHubService
     {
         public GitHubService(IOptions<Settings> settings)
         {
             _settings = settings.Value;
+            var token = !string.IsNullOrEmpty(_settings.GitHubToken) ? _settings.GitHubToken : Environment.GetEnvironmentVariable("GITHUB_TOKEN");
             _client = new GitHubClient(new ProductHeaderValue(_settings.GitHubAgentName))
             {
-                Credentials = new Credentials(_settings.GitHubToken)
+                Credentials = new Credentials(token)
             };
         }
         

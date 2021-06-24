@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using HappyTravel.Funai.Classes;
+using HappyTravel.LogEventsScraper.Classes;
 using Octokit;
 
-namespace HappyTravel.Funai.Services
+namespace HappyTravel.LogEventsScraper.Services
 {
     public interface IGitHubService
     {
